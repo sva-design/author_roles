@@ -178,7 +178,6 @@ Class extension_author_roles extends Extension
 			$label->appendChild(Widget::Select('fields[role]', $options));
 
 			$div->appendChild($label);
-			$div->appendChild(new XMLElement('p', __('<strong>Please note:</strong> According to the role you selected, some sections may not be visible to this author. If the <strong>Default Area</strong> of this author is set to one of these hidden sections, it will result in an authorization error message when he or she logs in. Be aware to set the Default Area to an area the author is allowed to see.')));
 			$group->appendChild($div);
 
 			$i = 0;
