@@ -183,9 +183,10 @@ Class extension_author_roles extends Extension
 			$i = 0;
 
 			foreach($context['form']->getChildren() as $formChild) {
-				if($formChild->getName() != 'fieldset') {
+				if($formChild->getName() != 'fieldset' || $formChild->getAttribute('id') == 'confirmation') {
 					// Inject here:
 					$context['form']->insertChildAt($i, $group);
+					break;
 				}
 
 				$i++;
