@@ -432,6 +432,23 @@ Class extension_author_roles extends Extension
 			return;
 		}
 
+		// add scripts for Students
+		$page = Administration::instance()->Page;
+		$author = Administration::Author();
+		$email = $author->get('email');
+		$first_name = $author->get('first_name');
+		$last_name = $author->get('last_name');
+
+		if($data['name'] == 'Student') {
+			$script = new XMLElement(
+				'script',
+				'var nameFromScript = "' . $first_name . ' ' . $last_name . '", emailFromScript = "' . $email . '";',
+				array('type'=>'text/javascript')
+			);
+			$page->addElementToHead($script);
+			$page->addScriptToHead(URL . '/extensions/author_roles/assets/student.js');
+		}
+
 		// Check if something needs to be done before anything is done:
 		$callback = Symphony::Engine()->getPageCallback();
 
