@@ -48,3 +48,10 @@ and change the rows which have `extension_id` set to the old ID, and update them
 - Fields that are set to 'hidden' will be made hidden with JavaScript. This is to ensure that all the data gets send and stored on a POST-action when an entry is saved. However, this could cause some issues with third-party field-types, although these aren't encountered yet.
 - Fields that are required cannot be set to 'hidden', since that would cause an error when trying to store the entry.
 - If you choose to filter entries (by letting an author only show his/her own entries or using the filter), pagination on the publish pages is disabled. This has to be done, because Symphony doesn't have a hook to alter the query used to retreive the entries.
+
+## Updates for SVA Design
+
+- Update syntax for Symphony 2.6.2
+- Clean up some markup
+- Add field prepopulation (and hiding) for the Student author role
+- Add required attribute for required inputs
