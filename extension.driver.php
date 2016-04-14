@@ -426,14 +426,17 @@ Class extension_author_roles extends Extension
 	 *  The context
 	 */
 	public function makePreAdjustements($context) {
+		$page = Administration::instance()->Page;
 		$data = $this->getCurrentAuthorRoleData();
+
+		// add script for all author roles
+		$page->addScriptToHead(URL . '/extensions/author_roles/assets/all.js');
 
 		if($data == false || Administration::Author()->isDeveloper()) {
 			return;
 		}
 
-		// add scripts for Students
-		$page = Administration::instance()->Page;
+		// add scripts for student author role
 		$author = Administration::Author();
 		$email = $author->get('email');
 		$first_name = $author->get('first_name');
