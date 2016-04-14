@@ -54,4 +54,5 @@ and change the rows which have `extension_id` set to the old ID, and update them
 - Update syntax for Symphony 2.6.2
 - Clean up some markup
 - Add field prepopulation (and hiding) for the Student author role
+- Add author field prepopulation for News page
 - Add required attribute for required inputs
