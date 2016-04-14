@@ -1,14 +1,14 @@
 jQuery(function(){
   var $ = jQuery;
 
-  var projectsPageId = '#publish',
+  var publishPageId = '#publish',
     authorsPageId = '#system-authors',
-    $studentsDiv = $(projectsPageId + ' #field-3'),
-    $yearsDiv = $(projectsPageId + ' #field-9'),
-    $emailDiv = $(projectsPageId + ' #field-17'),
-    $studentsInput = $(projectsPageId + ' input[name="fields[students]"]'),
-    $yearsInput = $(projectsPageId + ' input[name="fields[years]"]'),
-    $emailInput = $(projectsPageId + ' input[name="fields[email]"]'),
+    $studentsDiv = $(publishPageId + ' #field-3'),
+    $yearsDiv = $(publishPageId + ' #field-9'),
+    $emailDiv = $(publishPageId + ' #field-17'),
+    $studentsInput = $(publishPageId + ' input[name="fields[students]"]'),
+    $yearsInput = $(publishPageId + ' input[name="fields[years]"]'),
+    $emailInput = $(publishPageId + ' input[name="fields[email]"]'),
     name = (typeof nameFromScript == 'undefined') ? '' : nameFromScript,
     year = '2016', // change with yearly updates
     email = (typeof emailFromScript == 'undefined') ? '' : emailFromScript;
@@ -26,7 +26,7 @@ jQuery(function(){
 
   if ($studentsInput.val() == '') {
     $studentsInput.val(name);
-  }  
+  }
   $yearsInput.val(year);
   $emailInput.val(email);
 
