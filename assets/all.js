@@ -2,14 +2,34 @@ jQuery(function(){
   var $ = jQuery;
 
   var $saveButton = $('form').find('input[name="action[save]"]'),
-    $removeFile = $('.field-upload em:contains("Remove File")');
+    $removeFile = $('.field-upload.required em:contains("Remove File")'),
+    isValid = true,
+    hasWords = true;
 
   var checkValidity = function($req) {
-    var isValid = true;
+    isValid = true;
     $req.each(function() {
-      if (!$(this).val()) isValid = false;
+      if ($(this).is('textarea[class^="markdown"]')) {
+        return; // defer to checkWordCount
+      } else if (!$(this).is(':visible')) {
+        return; // don't invalidate hidden inputs
+      } else if (!$(this).val()) {
+        isValid = false;
+      }
     });
-    if (isValid) {
+    enableOrDisable(isValid && hasWords);
+  };
+
+  var checkWordCount = function($wordCount) {
+    hasWords = true;
+    $wordCount.each(function() {
+      if ($(this).text() == '0') hasWords = false;
+    });
+    enableOrDisable(isValid && hasWords);
+  };
+
+  var enableOrDisable = function(shouldEnable) {
+    if (shouldEnable) {
       enableButton();
     } else {
       disableButton();
@@ -24,26 +44,39 @@ jQuery(function(){
     $saveButton.removeAttr('disabled');
   };
 
-  // add listeners on required inputs to checkValidity
-  var initInputListeners = function() {
+  // listeners on required inputs to checkValidity
+  var initInputListener = function() {
     var $req = $('.required').find(':input');
+    checkValidity($req); // initial call
     $req.each(function() {
       $(this).on('keyup change', function() {
-        checkValidity($req);  
+        checkValidity($req);
       });
     });
   };
-  initInputListeners();
+  initInputListener();
 
-  // add listeners on removeFile link
-  var initRemoveFileListeners = function() {
+  // listeners on removeFile link
+  var initRemoveFileListener = function() {
     $removeFile.each(function() {
       $(this).click(function() {
         disableButton();
-        initInputListeners(); // refresh input selectors
+        initInputListener(); // refresh input selectors
       });
     });
   };
-  initRemoveFileListeners();
+  initRemoveFileListener();
 
+  // listeners for Markdown editor word count
+  var initWordCountListener = function($wordCount) {
+    $wordCount.each(function() {
+      $(this).bind('DOMSubtreeModified', function() {
+        checkWordCount($wordCount);
+      });
+    });
+  };
+  $.getScript("/extensions/editor_for_symphony/assets/editor/editor.js").done(function() {
+    var $wordCount = $('.required .editor-statusbar .words');
+    initWordCountListener($wordCount);
+  });
 });
