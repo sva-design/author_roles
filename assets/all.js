@@ -11,8 +11,8 @@ jQuery(function(){
     $req.each(function() {
       if ($(this).is('textarea[class^="markdown"]')) {
         return; // defer to checkWordCount
-      } else if (!$(this).is(':visible')) {
-        return; // don't invalidate hidden inputs
+      } else if (!$(this).is(':visible') || $(this).is('.CodeMirror textarea')) {
+        return; // don't invalidate hidden inputs or editor shadow textarea
       } else if (!$(this).val()) {
         isValid = false;
       }
