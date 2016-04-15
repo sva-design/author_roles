@@ -68,7 +68,9 @@ jQuery(function(){
   initRemoveFileListener();
 
   // listeners for Markdown editor word count
-  var initWordCountListener = function($wordCount) {
+  var initWordCountListener = function() {
+    var $wordCount = $('.required .editor-statusbar .words');
+    checkWordCount($wordCount); // initial call
     $wordCount.each(function() {
       $(this).bind('DOMSubtreeModified', function() {
         checkWordCount($wordCount);
@@ -76,7 +78,6 @@ jQuery(function(){
     });
   };
   $.getScript("/extensions/editor_for_symphony/assets/editor/editor.js").done(function() {
-    var $wordCount = $('.required .editor-statusbar .words');
-    initWordCountListener($wordCount);
+    initWordCountListener();
   });
 });
