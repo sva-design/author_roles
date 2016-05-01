@@ -56,3 +56,4 @@ and change the rows which have `extension_id` set to the old ID, and update them
 - Add field prepopulation (and hiding) for the Student author role
 - Add author field prepopulation for News page
 - Disable save button when required inputs not filled
+- Remove config max pagination rows overwrite

@@ -457,16 +457,16 @@ Class extension_author_roles extends Extension
 		// Check if something needs to be done before anything is done:
 		$callback = Symphony::Engine()->getPageCallback();
 
-		// If the user is only allowed to see his or her own entries, then the configuration should be overwritten to a maximum.
-		if($callback['driver'] == 'publish' && $callback['context']['page'] == 'index') {
-			$section = $callback['context']['section_handle'];
+		// // If the user is only allowed to see his or her own entries, then the configuration should be overwritten to a maximum.
+		// if($callback['driver'] == 'publish' && $callback['context']['page'] == 'index') {
+		// 	$section = $callback['context']['section_handle'];
 
-			foreach($data['sections'] as $id_section => $rules) {
-				if($rules['handle'] == $section && $rules['own_entries'] == 1) {
-					Symphony::Configuration()->set('pagination_maximum_rows', PHP_INT_MAX, 'symphony');
-				}
-			}
-		}
+		// 	foreach($data['sections'] as $id_section => $rules) {
+		// 		if($rules['handle'] == $section && $rules['own_entries'] == 1) {
+		// 			Symphony::Configuration()->set('pagination_maximum_rows', PHP_INT_MAX, 'symphony');
+		// 		}
+		// 	}
+		// }
 	}
 
 	// return all ancestors of the given element with the given names
