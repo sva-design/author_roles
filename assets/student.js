@@ -11,7 +11,9 @@ jQuery(function(){
     $emailInput = $(publishPageId + ' input[name="fields[email]"]'),
     name = (typeof nameFromScript == 'undefined') ? '' : nameFromScript,
     year = '2016', // change with yearly updates
-    email = (typeof emailFromScript == 'undefined') ? '' : emailFromScript;
+    email = (typeof emailFromScript == 'undefined') ? '' : emailFromScript,
+    $projectsFilter = $('#drawer-filtering-2'),
+    projectsIndexPath = '/admin/publish/projects/';
 
   // hide elements
   // -------------
@@ -30,4 +32,11 @@ jQuery(function(){
   $yearsInput.val(year);
   $emailInput.val(email);
 
+  // redirect to filtered projects index
+  // -----------------------------------
+
+  $projectsFilter.hide();
+  if (window.location.pathname == projectsIndexPath && window.location.search == '') {
+    window.location.replace('?filter[email]=' + email);
+  }
 });
