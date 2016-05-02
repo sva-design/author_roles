@@ -1,6 +1,8 @@
 jQuery(function(){
   var $ = jQuery;
 
+  // required fields validation
+  // --------------------------
   var $saveButton = $('form').find('input[name="action[save]"]'),
     $removeFile = $('.field-upload.required em:contains("Remove File")'),
     isValid = true,
@@ -80,4 +82,34 @@ jQuery(function(){
   $.getScript("/extensions/editor_for_symphony/assets/editor/editor.js").done(function() {
     initWordCountListener();
   });
+
+  // remove unapproved tags from tags suggestions list
+  // -------------------------------------------------
+  var $tagsList = $('#field-10').find('.tags'),
+    approvedTagsList = [
+      '3D Design',
+      'Advertising',
+      'Branding',
+      'Data Visualization',
+      'Editorial Design',
+      'Film',
+      'Illustration',
+      'Installation',
+      'Interaction Design',
+      'Motion Design',
+      'Packaging',
+      'Photography',
+      'Print Design',
+      'Typography',
+      'Web Design'
+      ];
+
+  if ($tagsList.length) {
+    $tagsList.find('li').each(function() {
+      var $tag = $(this);
+      if ($.inArray($tag.text(), approvedTagsList) == '-1') {
+        $tag.remove();
+      }
+    });
+  }
 });

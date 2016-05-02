@@ -13,25 +13,7 @@ jQuery(function(){
     year = '2016', // change with yearly updates
     email = (typeof emailFromScript == 'undefined') ? '' : emailFromScript,
     $projectsFilter = $('#drawer-filtering-2'),
-    projectsIndexPath = '/admin/publish/projects/',
-    $tagsList = $('#field-10').find('.tags'),
-    approvedTagsList = [
-      '3D Design',
-      'Advertising',
-      'Branding',
-      'Data Visualization',
-      'Editorial Design',
-      'Film',
-      'Illustration',
-      'Installation',
-      'Interaction Design',
-      'Motion Design',
-      'Packaging',
-      'Photography',
-      'Print Design',
-      'Typography',
-      'Web Design'
-      ];
+    projectsIndexPath = '/admin/publish/projects/';
 
   // hide elements
   // -------------
@@ -56,16 +38,5 @@ jQuery(function(){
   $projectsFilter.hide();
   if (window.location.pathname == projectsIndexPath && window.location.search == '') {
     window.location.replace('?filter[email]=' + email);
-  }
-
-  // remove unapproved tags from tagsList
-  // ------------------------------------
-  if ($tagsList.length) {
-    $tagsList.find('li').each(function() {
-      var $tag = $(this);
-      if ($.inArray($tag.text(), approvedTagsList) == '-1') {
-        $tag.remove();
-      }
-    });
   }
 });
