@@ -1,7 +1,7 @@
 jQuery(function(){
   var $ = jQuery;
 
-  var publishPageId = '#publish',
+  var publishPageId = '#publish.page-edit',
     authorsPageId = '#system-authors',
     $studentsDiv = $(publishPageId + ' #field-3'),
     $yearsDiv = $(publishPageId + ' #field-9'),
