@@ -51,12 +51,18 @@ and change the rows which have `extension_id` set to the old ID, and update them
 
 ## Updates for SVA Design
 
+### General
+
 - Update syntax for Symphony 2.6.2
 - Clean up some markup
-- Add field prepopulation (and hiding) for the Student author role
 - Add author field prepopulation for News page
 - Disable save button when required inputs not filled
 - Remove config max pagination rows overwrite
-- Add projects section filtering by email for the Student author role
 - Only show approved tags in tags suggestions list
-- Change author email label for Student author role
+
+### For the Student Author Role
+
+- Add field prepopulation (and hiding)
+- Add projects section filtering by email
+- Change author email label to show '(@sva.edu)'
+- Only allow editing projects that are their own

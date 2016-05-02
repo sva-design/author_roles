@@ -522,6 +522,26 @@ Class extension_author_roles extends Extension
 			return;
 		}
 
+		if($data['name'] == 'Student') {
+			$author_id = Administration::Author()->get('id');
+			$project_ids = Symphony::Database()->fetch('SELECT `id` FROM `tbl_entries` WHERE `author_id` = '.$author_id.';');
+
+			$author_entry_ids = array();
+			foreach($project_ids as $project_id) {
+				$author_entry_ids[] = $project_id['id'];
+			}
+
+			$entry_id = substr(Administration::instance()->getCurrentPageURL(),-5,-1);
+
+			if(!in_array($entry_id, $author_entry_ids)) {
+				Administration::instance()->throwCustomError(
+					__('You are not authorised to edit other projects'),
+					__('Access Denied'),
+					Page::HTTP_STATUS_FORBIDDEN
+				);
+			}
+		}
+
 		// Set the hidden fields:
 		$hiddenFields = array();
 
