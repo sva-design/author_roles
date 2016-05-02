@@ -13,7 +13,8 @@ jQuery(function(){
     year = '2016', // change with yearly updates
     email = (typeof emailFromScript == 'undefined') ? '' : emailFromScript,
     $projectsFilter = $('#drawer-filtering-2'),
-    projectsIndexPath = '/admin/publish/projects/';
+    projectsIndexPath = '/admin/publish/projects/',
+    $authorEmailInput = $(authorsPageId + ' input[name="fields[email]"');
 
   // hide elements
   // -------------
@@ -38,5 +39,14 @@ jQuery(function(){
   $projectsFilter.hide();
   if (window.location.pathname == projectsIndexPath && window.location.search == '') {
     window.location.replace('?filter[email]=' + email);
+  }
+
+  // add @sva.edu email messaging on edit authors page
+  // -------------------------------------------------
+  if ($authorEmailInput.length) {
+    var $authorEmailLabel = $authorEmailInput.parent(),
+      $oldLabel = $authorEmailLabel.html(),
+      $newLabel = $oldLabel.replace('Email Address', 'Email Address (@sva.edu)');
+    $authorEmailLabel.html($newLabel);
   }
 });

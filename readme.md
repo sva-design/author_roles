@@ -59,3 +59,4 @@ and change the rows which have `extension_id` set to the old ID, and update them
 - Remove config max pagination rows overwrite
 - Add projects section filtering by email for the Student author role
 - Only show approved tags in tags suggestions list
+- Change author email label for Student author role
